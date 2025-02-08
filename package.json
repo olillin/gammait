@@ -1,0 +1,40 @@
+{
+  "name": "gammait",
+  "version": "1.0.0",
+  "description": "Interact with the IT-sections account system",
+  "files": [
+    "/lib",
+    "/src"
+  ],
+  "exports": {
+    ".": "./lib/index.js",
+    "./urls": "./lib/urls.js"
+  },
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olillin/gammait.git"
+  },
+  "keywords": [
+    "oauth2",
+    "gamma",
+    "chalmers"
+  ],
+  "author": "Oli <oli@olillin.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olillin/gammait/issues"
+  },
+  "homepage": "https://github.com/olillin/gammait#readme",
+  "dependencies": {
+    "simple-oauth2": "^5.1.0",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "rimraf": "^6.0.1"
+  }
+}
