@@ -2,6 +2,18 @@ import { ClientApiAuthoritiesForUrl, ClientApiGroupsForUrl, ClientApiUserUrl, Gr
 
 export const GAMMA_ROOT = 'https://auth.chalmers.it' as const
 
+// #region Authorization
+export const OAUTH2_ROOT = `${GAMMA_ROOT}/oauth2` as const
+export const AUTHORIZE_PATH = '/oauth2/authorize' as const
+export const AUTHORIZE = `${GAMMA_ROOT}${AUTHORIZE_PATH}` as const
+export const TOKEN_PATH = '/oauth2/token' as const
+export const TOKEN = `${GAMMA_ROOT}${TOKEN_PATH}` as const
+// #endregion Authorization
+
+// #region OAuth2 Endpoints
+export const OAUTH2_USERINFO = `${OAUTH2_ROOT}/userinfo` as const
+// #endregion
+
 // #region Client API endpoints
 export const CLIENT_API_ROOT = `${GAMMA_ROOT}/api/client/v1` as const
 export const CLIENT_API_GROUPS = `${CLIENT_API_ROOT}/groups` as const
@@ -16,7 +28,7 @@ export function clientApiUser(id: UserId): ClientApiUserUrl {
 }
 export const CLIENT_API_AUTHORITIES = `${CLIENT_API_ROOT}/authorities` as const
 export const CLIENT_API_AUTHORITIES_FOR = `${CLIENT_API_AUTHORITIES}/for` as const
-export function clientAuthoritiesFor(id: UserId): ClientApiAuthoritiesForUrl {
+export function clientApiAuthoritiesFor(id: UserId): ClientApiAuthoritiesForUrl {
     return `${CLIENT_API_AUTHORITIES_FOR}/${id}`
 }
 // #endregion Client API endpoints

@@ -2,13 +2,23 @@
   "name": "gammait",
   "version": "1.0.0",
   "description": "Interact with the IT-sections account system",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "/lib",
     "/src"
   ],
   "exports": {
-    ".": "./lib/index.js",
-    "./urls": "./lib/urls.js"
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./urls": {
+      "import": "./lib/urls.js",
+      "require": "./lib/urls.js",
+      "types": "./lib/urls.d.ts"
+    }
   },
   "scripts": {
     "build": "rimraf lib && tsc",
@@ -35,6 +45,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.13.1",
+    "@types/simple-oauth2": "^5.0.7",
     "rimraf": "^6.0.1"
   }
 }

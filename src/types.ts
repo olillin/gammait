@@ -6,7 +6,6 @@ export type UserId = UUID
 export type GroupId = UUID
 export type SuperGroupId = UUID
 export type PostId = UUID
-export type Scope = 'openid' | 'profile' | 'email'
 
 export interface User {
     id: UserId
@@ -56,6 +55,16 @@ export interface VersionedSuperGroup extends SuperGroup, Versioned {}
 
 // #endregion Basic
 
+// #region Authentication
+export type Scope = 'openid' | 'profile' | 'email'
+
+export interface ClientConfig {
+    clientId: string
+    clientSecret: string
+    scope: Scope
+}
+// #endregion Authentication
+
 // #region URLs
 
 // #region Images
@@ -99,7 +108,7 @@ export interface UserInfo {
     jti: UUID
 }
 
-export interface UserWithGroup {
+export interface UserWithGroups {
     user: User
     groups: {
         group: VersionedGroup
