@@ -3,13 +3,24 @@ import { Scope, UserInfo } from '../types'
 import oauth2 from 'simple-oauth2'
 import * as url from '../urls'
 
+/**
+ * Configuration for the authorization code flow.
+ * @see {@link AuthorizationCode}
+ */
 export interface AuthorizationCodeConfig {
+    /** ID for the Gamma Client. */
     clientId: string
+    /** Secret for the Gamma Client. */
     clientSecret: string
+    /** Redirect URI for the Gamma Client. */
     redirectUri: string
+    /** Scopes for the Gamma Client. */
     scope: Scope[]
 }
 
+/**
+ * Client for the Authorization Code flow in Gamma.
+ */
 export class AuthorizationCode extends Client {
     config: AuthorizationCodeConfig
     oauth2Client: oauth2.AuthorizationCode
@@ -36,9 +47,10 @@ export class AuthorizationCode extends Client {
     }
 
     /**
-     * Generate a new access token and store it for later
-     * @param code Authorization code
-     * @returns The generated access token
+     * Generate an access token from an authorization code. The token will be
+     * stored in this client and used in future requests.
+     * @param code The authorization code returned to the redirect URI.
+     * @returns A promise of a Gamma access token.
      */
     async generateToken(code: string): Promise<oauth2.AccessToken> {
         const token = await this.oauth2Client.getToken({
@@ -50,7 +62,12 @@ export class AuthorizationCode extends Client {
         return token
     }
 
-    authorizeUrl() {
+    /**
+     * Create the authorization URL that a user should be redirected to in order
+     * to authorize this client.
+     * @returns The authorization URL.
+     */
+    authorizeUrl(): string {
         return this.oauth2Client.authorizeURL({
             scope: this.config.scope,
             redirect_uri: this.config.redirectUri,
@@ -99,6 +116,10 @@ export class AuthorizationCode extends Client {
         })
     }
 
+    /**
+     * Get info about the authorized user and the current access token.
+     * @returns Information about the user and the access token.
+     */
     userInfo(): Promise<UserInfo> {
         return this.fetch(url.OAUTH2_USERINFO)
     }

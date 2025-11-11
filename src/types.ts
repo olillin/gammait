@@ -1,3 +1,5 @@
+// TODO: Documentation
+
 import { UUID } from 'crypto'
 import * as url from './urls'
 

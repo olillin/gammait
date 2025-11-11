@@ -23,7 +23,7 @@
     "scripts": {
         "build": "rimraf lib && tsc",
         "test": "vitest",
-        "format": "prettier . --write",
+        "format": "prettier . --write --list-different",
         "lint": "eslint"
     },
     "repository": {
