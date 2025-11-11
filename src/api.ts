@@ -6,8 +6,25 @@ abstract class Client {
     protected abstract fetch<T extends object>(url: string, method: string): Promise<T>
 }
 
-interface ApiClientConfig {
+export interface ApiClientConfig {
     authorization: string
+}
+
+/**
+ * Get the API authorization that can be used as the value for `Authorization`
+ * from the API key.
+ * 
+ * These formats are allowed:
+ * 
+ * - `<api-key-id>:<api-key>`
+ * - `pre-shared <api-key-id>:<api-key>`
+ * - `Authorization: <api-key-id>:<api-key>`
+ * 
+ * @param apiKey The API key in one of the allowed formats.
+ * @returns The Authorization header value in the format `pre-shared <api-key-id>:<api-key>`
+ */
+export function getApiAuthorization(apiKey: string) {
+    return 'pre-shared ' + apiKey.replace(/^(Authorization: *)?pre-shared +/i, '').trim()
 }
 
 class ApiClient extends Client {
@@ -15,11 +32,15 @@ class ApiClient extends Client {
 
     constructor(config: ApiClientConfig) {
         super()
-        this.config = config
+        this.config = {
+            ...config,
+            authorization: getApiAuthorization(config.authorization)
+        }
     }
 
     protected fetch<T extends object>(url: string, method: string = 'GET'): Promise<T> {
         return new Promise((resolve, reject) => {
+            const authorization = this.config.authorization
             fetch(url, {
                 headers: {
                     Authorization: this.config.authorization,
