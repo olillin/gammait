@@ -1,9 +1,9 @@
-import { expect, test } from "vitest"
-import { ApiClientConfig, ClientApi } from "../../../src"
+import { expect, test } from 'vitest'
+import { ApiClientConfig, ClientApi } from '../../../src'
 
 test('it converts API authorization to preferred format', () => {
     const config: ApiClientConfig = {
-        authorization: 'abc:123'
+        authorization: 'abc:123',
     }
     const client = new ClientApi(config)
 

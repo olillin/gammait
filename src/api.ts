@@ -1,9 +1,22 @@
 import oauth2 from 'simple-oauth2'
-import { ClientAuthority, Group, GroupWithPost, Scope, SuperGroup, User, UserId, UserInfo, UserWithGroups } from './types'
+import {
+    ClientAuthority,
+    Group,
+    GroupWithPost,
+    Scope,
+    SuperGroup,
+    User,
+    UserId,
+    UserInfo,
+    UserWithGroups,
+} from './types'
 import * as url from './urls'
 
 abstract class Client {
-    protected abstract fetch<T extends object>(url: string, method: string): Promise<T>
+    protected abstract fetch<T extends object>(
+        url: string,
+        method: string
+    ): Promise<T>
 }
 
 export interface ApiClientConfig {
@@ -13,18 +26,21 @@ export interface ApiClientConfig {
 /**
  * Get the API authorization that can be used as the value for `Authorization`
  * from the API key.
- * 
+ *
  * These formats are allowed:
- * 
+ *
  * - `<api-key-id>:<api-key>`
  * - `pre-shared <api-key-id>:<api-key>`
  * - `Authorization: <api-key-id>:<api-key>`
- * 
+ *
  * @param apiKey The API key in one of the allowed formats.
  * @returns The Authorization header value in the format `pre-shared <api-key-id>:<api-key>`
  */
 export function getApiAuthorization(apiKey: string) {
-    return 'pre-shared ' + apiKey.replace(/^(Authorization: *)?pre-shared +/i, '').trim()
+    return (
+        'pre-shared ' +
+        apiKey.replace(/^(Authorization: *)?pre-shared +/i, '').trim()
+    )
 }
 
 class ApiClient extends Client {
@@ -34,11 +50,14 @@ class ApiClient extends Client {
         super()
         this.config = {
             ...config,
-            authorization: getApiAuthorization(config.authorization)
+            authorization: getApiAuthorization(config.authorization),
         }
     }
 
-    protected fetch<T extends object>(url: string, method: string = 'GET'): Promise<T> {
+    protected fetch<T extends object>(
+        url: string,
+        method: string = 'GET'
+    ): Promise<T> {
         return new Promise((resolve, reject) => {
             const authorization = this.config.authorization
             fetch(url, {
@@ -49,11 +68,16 @@ class ApiClient extends Client {
             })
                 .then(async res => {
                     if (!res.ok) {
-                        reject(`Received code ${res.status} during ${method} to ${url}`)
+                        reject(
+                            `Received code ${res.status} during ${method} to ${url}`
+                        )
                         return
                     }
 
-                    if (!res.headers.has('Content-Type') || res.headers.get('Content-Type') !== 'application/json') {
+                    if (
+                        !res.headers.has('Content-Type') ||
+                        res.headers.get('Content-Type') !== 'application/json'
+                    ) {
                         reject('Response was not JSON')
                         return
                     }
@@ -162,9 +186,14 @@ export class AuthorizationCode extends Client {
         })
     }
 
-    protected fetch<T extends object>(url: string, method: string = 'GET'): Promise<T> {
+    protected fetch<T extends object>(
+        url: string,
+        method: string = 'GET'
+    ): Promise<T> {
         if (!this.accessToken) {
-            throw new Error('No token has been generated yet, make sure to run `generateToken`')
+            throw new Error(
+                'No token has been generated yet, make sure to run `generateToken`'
+            )
         }
 
         return new Promise((resolve, reject) => {
@@ -176,11 +205,16 @@ export class AuthorizationCode extends Client {
             })
                 .then(async res => {
                     if (!res.ok) {
-                        reject(`Received code ${res.status} during ${method} to ${url}`)
+                        reject(
+                            `Received code ${res.status} during ${method} to ${url}`
+                        )
                         return
                     }
 
-                    if (!res.headers.has('Content-Type') || res.headers.get('Content-Type') !== 'application/json') {
+                    if (
+                        !res.headers.has('Content-Type') ||
+                        res.headers.get('Content-Type') !== 'application/json'
+                    ) {
                         reject('Response was not JSON')
                         return
                     }

@@ -1,4 +1,17 @@
-import { ClientApiAuthoritiesForUrl, ClientApiGroupsForUrl, ClientApiUserUrl, GroupAvatarUrl, GroupBannerUrl, GroupId, InfoApiUserUrl, SuperGroupAvatarUrl, SuperGroupBannerUrl, SuperGroupId, UserAvatarUrl, UserId } from './types'
+import {
+    ClientApiAuthoritiesForUrl,
+    ClientApiGroupsForUrl,
+    ClientApiUserUrl,
+    GroupAvatarUrl,
+    GroupBannerUrl,
+    GroupId,
+    InfoApiUserUrl,
+    SuperGroupAvatarUrl,
+    SuperGroupBannerUrl,
+    SuperGroupId,
+    UserAvatarUrl,
+    UserId,
+} from './types'
 
 export const GAMMA_ROOT = 'https://auth.chalmers.it' as const
 
@@ -27,8 +40,11 @@ export function clientApiUser(id: UserId): ClientApiUserUrl {
     return `${CLIENT_API_USERS}/${id}`
 }
 export const CLIENT_API_AUTHORITIES = `${CLIENT_API_ROOT}/authorities` as const
-export const CLIENT_API_AUTHORITIES_FOR = `${CLIENT_API_AUTHORITIES}/for` as const
-export function clientApiAuthoritiesFor(id: UserId): ClientApiAuthoritiesForUrl {
+export const CLIENT_API_AUTHORITIES_FOR =
+    `${CLIENT_API_AUTHORITIES}/for` as const
+export function clientApiAuthoritiesFor(
+    id: UserId
+): ClientApiAuthoritiesForUrl {
     return `${CLIENT_API_AUTHORITIES_FOR}/${id}`
 }
 // #endregion Client API endpoints
