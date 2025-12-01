@@ -121,6 +121,6 @@ export class AuthorizationCode extends Client {
      * @returns Information about the user and the access token.
      */
     userInfo(): Promise<UserInfo> {
-        return this.fetch(url.OAUTH2_USERINFO)
+        return this.fetch(url.USERINFO)
     }
 }
