@@ -32,9 +32,9 @@ export class AuthorizationCode extends Client {
         this.oauth2Client = new oauth2.AuthorizationCode({
             auth: {
                 tokenHost: url.GAMMA_ROOT,
-                tokenPath: url.TOKEN_PATH,
+                tokenPath: url.OAUTH2_TOKEN_PATH,
                 authorizeHost: url.GAMMA_ROOT,
-                authorizePath: url.AUTHORIZE_PATH,
+                authorizePath: url.OAUTH2_AUTHORIZE_PATH,
             },
             client: {
                 id: this.config.clientId,
@@ -121,6 +121,6 @@ export class AuthorizationCode extends Client {
      * @returns Information about the user and the access token.
      */
     userInfo(): Promise<UserInfo> {
-        return this.fetch(url.USERINFO)
+        return this.fetch(url.OAUTH2_USERINFO)
     }
 }
