@@ -1,60 +1,60 @@
 {
-    "name": "gammait",
-    "version": "1.0.1",
-    "description": "Interact with the IT-sections account system",
-    "main": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "files": [
-        "/lib",
-        "/src"
-    ],
-    "exports": {
-        ".": {
-            "import": "./lib/index.js",
-            "require": "./lib/index.js",
-            "types": "./lib/index.d.ts"
-        },
-        "./urls": {
-            "import": "./lib/urls.js",
-            "require": "./lib/urls.js",
-            "types": "./lib/urls.d.ts"
-        }
+  "name": "gammait",
+  "version": "1.0.2",
+  "description": "Interact with the IT-sections account system",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "/lib",
+    "/src"
+  ],
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "require": "./lib/index.js",
+      "types": "./lib/index.d.ts"
     },
-    "scripts": {
-        "build": "rimraf lib && tsc",
-        "test": "vitest",
-        "format": "prettier . --write --list-different",
-        "lint": "eslint"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/olillin/gammait.git"
-    },
-    "keywords": [
-        "oauth2",
-        "gamma",
-        "chalmers"
-    ],
-    "author": "Oli <oli@olillin.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/olillin/gammait/issues"
-    },
-    "homepage": "https://github.com/olillin/gammait#readme",
-    "dependencies": {
-        "simple-oauth2": "^5.1.0"
-    },
-    "devDependencies": {
-        "@eslint/compat": "^1.4.1",
-        "@eslint/js": "^9.39.1",
-        "@types/node": "^22.13.1",
-        "@types/simple-oauth2": "^5.0.7",
-        "eslint": "^9.39.1",
-        "eslint-plugin-jsdoc": "^61.1.12",
-        "prettier": "^3.6.2",
-        "rimraf": "^6.0.1",
-        "typescript": "^5.9.3",
-        "typescript-eslint": "^8.46.4",
-        "vitest": "^4.0.8"
+    "./urls": {
+      "import": "./lib/urls.js",
+      "require": "./lib/urls.js",
+      "types": "./lib/urls.d.ts"
     }
+  },
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "test": "vitest",
+    "format": "prettier . --write --list-different",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olillin/gammait.git"
+  },
+  "keywords": [
+    "oauth2",
+    "gamma",
+    "chalmers"
+  ],
+  "author": "Oli <oli@olillin.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olillin/gammait/issues"
+  },
+  "homepage": "https://github.com/olillin/gammait#readme",
+  "dependencies": {
+    "simple-oauth2": "^5.1.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.4.1",
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^22.13.1",
+    "@types/simple-oauth2": "^5.0.7",
+    "eslint": "^9.39.1",
+    "eslint-plugin-jsdoc": "^61.1.12",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vitest": "^4.0.8"
+  }
 }
