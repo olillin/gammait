@@ -65,7 +65,7 @@ export class AuthorizationCode extends Client {
     /**
      * Create the authorization URL that a user should be redirected to in order
      * to authorize this client.
-     * @returns The authorization URL.
+     * @returns The full URL to the OAuth2 authorization route.
      */
     authorizeUrl(): string {
         return this.oauth2Client.authorizeURL({
@@ -87,14 +87,16 @@ export class AuthorizationCode extends Client {
         return new Promise((resolve, reject) => {
             fetch(url, {
                 headers: {
-                    Authorization: `Bearer ${this.accessToken!.token.access_token}`,
+                    Authorization: `Bearer ${this.accessToken!.token.access_token as string}`,
                 },
                 method: method,
             })
                 .then(async res => {
                     if (!res.ok) {
                         reject(
-                            `Received code ${res.status} during ${method} to ${url}`
+                            new Error(
+                                `Received code ${res.status} during ${method} to ${url}`
+                            )
                         )
                         return
                     }
@@ -103,15 +105,19 @@ export class AuthorizationCode extends Client {
                         !res.headers.has('Content-Type') ||
                         res.headers.get('Content-Type') !== 'application/json'
                     ) {
-                        reject('Response was not JSON')
+                        reject(new Error('Response was not JSON'))
                         return
                     }
 
-                    const data: T = await res.json()
+                    const data = (await res.json()) as T
                     resolve(data)
                 })
                 .catch(reason => {
-                    reject(reason)
+                    reject(
+                        reason instanceof Error
+                            ? reason
+                            : new Error(String(reason))
+                    )
                 })
         })
     }

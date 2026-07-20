@@ -24,9 +24,9 @@ export interface ApiClientConfig {
     /**
      * The API key in one of the supported formats:
      *
-     * - `<api-key-id>:<api-key>`
-     * - `pre-shared <api-key-id>:<api-key>`
-     * - `Authorization: <api-key-id>:<api-key>`
+     * - `&lt;api-key-id>:&lt;api-key>`
+     * - `pre-shared &lt;api-key-id>:&lt;api-key>`
+     * - `Authorization: &lt;api-key-id>:&lt;api-key>`.
      *
      */
     authorization: string
@@ -38,12 +38,11 @@ export interface ApiClientConfig {
  *
  * These formats are allowed:
  *
- * - `<api-key-id>:<api-key>`
- * - `pre-shared <api-key-id>:<api-key>`
- * - `Authorization: <api-key-id>:<api-key>`
- *
+ * - `&lt;api-key-id>:&lt;api-key>`
+ * - `pre-shared &lt;api-key-id>:&lt;api-key>`
+ * - `Authorization: &lt;api-key-id>:&lt;api-key>`.
  * @param apiKey The API key in one of the allowed formats.
- * @returns The Authorization header value in the format `pre-shared <api-key-id>:<api-key>`
+ * @returns The Authorization header value in the format `pre-shared &lt;api-key-id>:&lt;api-key>`.
  */
 export function getApiAuthorization(apiKey: string) {
     return (
@@ -71,7 +70,6 @@ export class ApiClient extends Client {
         method: string = 'GET'
     ): Promise<T> {
         return new Promise((resolve, reject) => {
-            const authorization = this.config.authorization
             fetch(url, {
                 headers: {
                     Authorization: this.config.authorization,
@@ -81,7 +79,9 @@ export class ApiClient extends Client {
                 .then(async res => {
                     if (!res.ok) {
                         reject(
-                            `Received code ${res.status} during ${method} to ${url}`
+                            new Error(
+                                `Received code ${res.status} during ${method} to ${url}`
+                            )
                         )
                         return
                     }
@@ -90,15 +90,19 @@ export class ApiClient extends Client {
                         !res.headers.has('Content-Type') ||
                         res.headers.get('Content-Type') !== 'application/json'
                     ) {
-                        reject('Response was not JSON')
+                        reject(new Error('Response was not JSON'))
                         return
                     }
 
-                    const data: T = await res.json()
+                    const data = (await res.json()) as T
                     resolve(data)
                 })
                 .catch(reason => {
-                    reject(reason)
+                    reject(
+                        reason instanceof Error
+                            ? reason
+                            : new Error(String(reason))
+                    )
                 })
         })
     }
