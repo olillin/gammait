@@ -6,7 +6,7 @@ name: Publish npm Package
 on:
     push:
         tags:
-          - 'v*'
+            - 'v*'
 
 permissions:
     id-token: write # Required for OIDC
