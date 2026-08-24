@@ -1,9 +1,10 @@
 # GammaIT
 
-An easier way to integrate [Gamma](https://auth.chalmers.it) ([source](https://github.com/cthit/Gamma)),
-the account system for Chalmers' IT-section, into your websites and applications.
+A TypeScript/JavaScript API client for [Gamma](https://auth.chalmers.it), the
+account system for the Software Engineering Student Division (IT) at Chalmers.
+Making it easier to integrate with your websites and applications.
 
-## Demo
+## Quickstart
 
-See how to authenticate using GammaIT in the [demo project](https://github.com/olillin/gamma-demo)
-or live at <https://gamma.olillin.com>.
+See how GammaIT is used to create a website with Gamma authentication in the
+[Gamma Quickstart Guide](https://gamma-docs.olillin.com/quickstart).
