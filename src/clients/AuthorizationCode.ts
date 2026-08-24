@@ -1,6 +1,6 @@
+import oauth2 from 'simple-oauth2'
 import { Client } from '../client'
 import { Scope, UserInfo } from '../types'
-import oauth2 from 'simple-oauth2'
 import * as url from '../urls'
 
 /**

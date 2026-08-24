@@ -1,9 +1,9 @@
+import { fileURLToPath } from 'node:url'
 import { includeIgnoreFile } from '@eslint/compat'
 import eslint from '@eslint/js'
-import globals from 'globals'
-import { fileURLToPath } from 'node:url'
-import tseslint from 'typescript-eslint'
 import jsdoc from 'eslint-plugin-jsdoc'
+import globals from 'globals'
+import tseslint from 'typescript-eslint'
 
 const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url))
 

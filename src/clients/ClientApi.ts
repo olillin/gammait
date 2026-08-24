@@ -10,6 +10,7 @@ import {
     UserId,
 } from '../types'
 import * as url from '../urls'
+
 export class ClientApi extends ApiClient {
     getUsers(): Promise<User[]> {
         return this.fetch(url.CLIENT_API_USERS)

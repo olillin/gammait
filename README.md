@@ -1,6 +1,6 @@
 # GammaIT
 
-A TypeScript/JavaScript API client for [Gamma](https://auth.chalmers.it), the
+TypeScript/JavaScript API client for [Gamma](https://auth.chalmers.it), the
 account system for the Software Engineering Student Division (IT) at Chalmers.
 Making it easier to integrate with your websites and applications.
 
