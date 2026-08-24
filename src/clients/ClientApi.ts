@@ -18,6 +18,7 @@ import * as url from '../urls'
 export class ClientApi extends ApiClient {
     /**
      * Get all users of the client.
+     * @returns Information about the users which have authorized the client.
      * @see {@link https://gamma-docs.olillin.com/api/client-api#get-users Client API#GET /users - Gamma Docs}
      */
     getUsers(): Promise<User[]> {
@@ -26,6 +27,8 @@ export class ClientApi extends ApiClient {
 
     /**
      * Get a user of the client.
+     * @param id The id of the user to get information about.
+     * @returns Information about a user which has authorized the client.
      * @see {@link https://gamma-docs.olillin.com/api/client-api#get-usersid Client API#GET /users/{id} - Gamma Docs}
      */
     getUser(id: UserId): Promise<User> {
@@ -34,6 +37,7 @@ export class ClientApi extends ApiClient {
 
     /**
      * Get all Gamma groups.
+     * @returns Information about all Gamma groups.
      * @see {@link https://gamma-docs.olillin.com/api/client-api#get-groups Client API#GET /groups - Gamma Docs}
      */
     getGroups(): Promise<Group[]> {
@@ -42,6 +46,8 @@ export class ClientApi extends ApiClient {
 
     /**
      * Get all groups which a user of the client is in.
+     * @param id The id of the user to get groups for.
+     * @returns Information about the groups the user is in and which post the user has.
      * @see {@link https://gamma-docs.olillin.com/api/client-api#get-groupsforid Client API#GET /groups/for/{id} - Gamma Docs}
      */
     getGroupsFor(id: UserId): Promise<GroupWithPost[]> {
@@ -50,6 +56,7 @@ export class ClientApi extends ApiClient {
 
     /**
      * Get all Gamma super groups.
+     * @returns Information about all Gamma super groups.
      * @see {@link https://gamma-docs.olillin.com/api/client-api#get-supergroups Client API#GET /superGroups - Gamma Docs}
      */
     getSuperGroups(): Promise<SuperGroup[]> {
@@ -58,6 +65,7 @@ export class ClientApi extends ApiClient {
 
     /**
      * Get the names of all client authorities on the client.
+     * @returns All authorities which have been created on the client.
      * @see {@link https://gamma-docs.olillin.com/api/client-api#get-authorities Client API#GET /authorities - Gamma Docs}
      */
     getAuthorities(): Promise<ClientAuthority[]> {
@@ -66,6 +74,8 @@ export class ClientApi extends ApiClient {
 
     /**
      * Get the names of the client authorities which the user belongs to.
+     * @param id The id of the user to get authorities for.
+     * @returns The list of authorities the user has.
      * @see {@link https://gamma-docs.olillin.com/api/client-api#get-authoritiesforid Client API#GET /authorities/for/{id} - Gamma Docs}
      */
     getAuthoritiesFor(id: UserId): Promise<ClientAuthority[]> {

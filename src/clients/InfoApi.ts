@@ -11,6 +11,8 @@ import * as url from '../urls'
 export class InfoApi extends ApiClient {
     /**
      * Get information about a specific user.
+     * @param id The id of the user to get information about.
+     * @returns Information about the user and the groups they are in.
      * @see {@link https://gamma-docs.olillin.com/api/info-api#get-usersid Info API#GET /users/{id} - Gamma Docs}
      */
     getUser(id: UserId): Promise<UserWithGroups> {
@@ -19,6 +21,7 @@ export class InfoApi extends ApiClient {
 
     /**
      * Get the full detailed information about all super groups.
+     * @returns A blob of super groups.
      * @see {@link https://gamma-docs.olillin.com/api/info-api#get-blob Info API#GET /blob - Gamma Docs}
      */
     getBlob(): Promise<unknown> {

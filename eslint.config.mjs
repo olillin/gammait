@@ -10,7 +10,7 @@ const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url))
 export default tseslint.config(
     includeIgnoreFile(gitignorePath, 'Imported .gitignore patterns'),
     {
-        files: ['**/*.ts'],
+        files: ['src/**/*.ts'],
         languageOptions: {
             globals: globals.node,
             parserOptions: {

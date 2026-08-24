@@ -4,19 +4,27 @@ import { UUID } from 'crypto'
 import * as url from './urls'
 
 // #region Basic
+
 /**
+ * UUID which identifies a Gamma user.
  * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
  */
 export type UserId = UUID
+
 /**
+ * UUID which identifies a Gamma group.
  * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
  */
 export type GroupId = UUID
+
 /**
+ * UUID which identifies a Gamma super group.
  * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
  */
 export type SuperGroupId = UUID
+
 /**
+ * UUID which identifies a Gamma post.
  * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
  */
 export type PostId = UUID
@@ -94,6 +102,7 @@ export interface VersionedSuperGroup extends SuperGroup, Versioned {}
 // #endregion Basic
 
 // #region Authentication
+
 /**
  * Scopes specify which information a client is allowed to access.
  * @see {@link https://gamma-docs.olillin.com/api/authorization#scopes Authorization#Scopes - Gamma Docs}
