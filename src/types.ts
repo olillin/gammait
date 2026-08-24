@@ -94,25 +94,56 @@ export type InfoApiUserUrl = `${typeof url.INFO_API_USERS}/${UserId}`
 // #endregion URLs
 
 // #region API responses
-export interface UserInfo {
-    sub: UserId
-    cid: string
+type IfScope<S extends Scope, R extends Scope, T> = R extends S
+    ? T
+    : Record<string, never>
 
-    name: string
-    given_name: string
-    family_name: string
-    nickname: string
-    picture: UserAvatarUrl
-
-    scope: Scope[]
-    iss: typeof url.GAMMA_ROOT
-
-    aud: string[]
-    nbf: number
-    exp: number
-    iat: number
-    jti: UUID
-}
+export type UserInfo<S extends Scope = Scope> = IfScope<
+    'openid',
+    S,
+    {
+        /** Gamma user ID. */
+        sub: UserId
+        /** Token issuer identifier (Gamma URL). */
+        iss: typeof url.GAMMA_ROOT
+        /** Audience the token is intended for (your client ID). */
+        aud: string[]
+        /** Token scopes. */
+        scope: S[]
+        /** Not before. JWT cannot be used before this time. */
+        nbf: number
+        /** Expiration time for the JWT. */
+        exp: number
+        /** Time at which the JWT was issued. */
+        iat: number
+        /** JWT ID. */
+        jti: UUID
+    }
+> &
+    IfScope<
+        'profile',
+        S,
+        {
+            /** Chalmers ID. */
+            cid: string
+            nickname: string
+            family_name: string
+            given_name: string
+            /** Full name as "given_name 'nickname' family_name". */
+            name: string
+            /** Preferred language of the user. */
+            locale: 'sv' | 'en'
+            /** URL to the user avatar. */
+            picture: UserAvatarUrl
+        }
+    > &
+    IfScope<
+        'email',
+        S,
+        {
+            email: string
+        }
+    >
 
 export interface UserWithGroups {
     user: User

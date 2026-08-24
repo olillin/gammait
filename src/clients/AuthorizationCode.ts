@@ -5,9 +5,10 @@ import * as url from '../urls'
 
 /**
  * Configuration for the authorization code flow.
+ * @template S The scopes specified in this configuration. Defaults to all scopes.
  * @see {@link AuthorizationCode}
  */
-export interface AuthorizationCodeConfig {
+export interface AuthorizationCodeConfig<S extends Scope = Scope> {
     /** ID for the Gamma Client. */
     clientId: string
     /** Secret for the Gamma Client. */
@@ -15,18 +16,19 @@ export interface AuthorizationCodeConfig {
     /** Redirect URI for the Gamma Client. */
     redirectUri: string
     /** Scopes for the Gamma Client. */
-    scope: Scope[]
+    scope: S[]
 }
 
 /**
  * Client for the Authorization Code flow in Gamma.
+ * @template S The scopes specified in the configuration. Defaults to all scopes.
  */
-export class AuthorizationCode extends Client {
-    config: AuthorizationCodeConfig
+export class AuthorizationCode<S extends Scope = Scope> extends Client {
+    config: AuthorizationCodeConfig<S>
     oauth2Client: oauth2.AuthorizationCode
     accessToken: oauth2.AccessToken | undefined
 
-    constructor(config: AuthorizationCodeConfig) {
+    constructor(config: AuthorizationCodeConfig<S>) {
         super()
         this.config = config
         this.oauth2Client = new oauth2.AuthorizationCode({
@@ -124,9 +126,9 @@ export class AuthorizationCode extends Client {
 
     /**
      * Get info about the authorized user and the current access token.
-     * @returns Information about the user and the access token.
+     * @returns The data available based on the configured scopes.
      */
-    userInfo(): Promise<UserInfo> {
-        return this.fetch(url.OAUTH2_USERINFO)
+    userInfo(): Promise<UserInfo<S>> {
+        return this.fetch<UserInfo<S>>(url.OAUTH2_USERINFO)
     }
 }
