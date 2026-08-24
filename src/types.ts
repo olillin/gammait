@@ -4,11 +4,26 @@ import { UUID } from 'crypto'
 import * as url from './urls'
 
 // #region Basic
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
+ */
 export type UserId = UUID
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
+ */
 export type GroupId = UUID
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
+ */
 export type SuperGroupId = UUID
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/#types Introduction#Types - Gamma Docs}
+ */
 export type PostId = UUID
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/client-api/#user Client API#User - Gamma Docs}
+ */
 export interface User {
     id: UserId
     cid: string
@@ -18,6 +33,9 @@ export interface User {
     acceptanceYear: number
 }
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/client-api/#group Client API#Group - Gamma Docs}
+ */
 export interface Group {
     id: GroupId
     name: string
@@ -25,6 +43,9 @@ export interface Group {
     superGroup: SuperGroup
 }
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/client-api/#super-group Client API#SuperGroup - Gamma Docs}
+ */
 export interface SuperGroup {
     id: SuperGroupId
     name: string
@@ -34,12 +55,18 @@ export interface SuperGroup {
     enDescription: string
 }
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/client-api/#post Client API#Post - Gamma Docs}
+ */
 export interface Post extends Versioned {
     id: PostId
     svName: string
     enName: string
 }
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/info-api/#group-with-post Info API#Group with Post - Gamma Docs}
+ */
 export interface PostInfo extends Post {
     emailPrefix: string
     order: number
@@ -53,11 +80,17 @@ export interface VersionedGroup extends Group, Versioned {
     superGroup: VersionedSuperGroup
 }
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/info-api/#super-group Info API#Super Group - Gamma Docs}
+ */
 export interface VersionedSuperGroup extends SuperGroup, Versioned {}
 
 // #endregion Basic
 
 // #region Authentication
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/authorization/#scopes Authorization#Scopes - Gamma Docs}
+ */
 export type Scope = 'openid' | 'profile' | 'email'
 
 export interface ClientConfig {
@@ -98,6 +131,9 @@ type IfScope<S extends Scope, R extends Scope, T> = R extends S
     ? T
     : Record<string, never>
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/openid/#user-info OpenID API#User Info - Gamma Docs}
+ */
 export type UserInfo<S extends Scope = Scope> = IfScope<
     'openid',
     S,
@@ -145,6 +181,9 @@ export type UserInfo<S extends Scope = Scope> = IfScope<
         }
     >
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/info-api/#user-with-groups User with Groups - Gamma Docs}
+ */
 export interface UserWithGroups {
     user: User
     groups: {
@@ -153,9 +192,15 @@ export interface UserWithGroups {
     }[]
 }
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/info-api/#group-with-post Group with Post - Gamma Docs}
+ */
 export interface GroupWithPost extends Group {
     post: Post
 }
 
+/**
+ * @see {@link https://gamma-docs.olillin.com/api/client-api/#client-authorities Client API#Client Authorities - Gamma Docs}
+ */
 export type ClientAuthority = string
 // #endregion API responses
