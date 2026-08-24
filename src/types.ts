@@ -22,7 +22,8 @@ export type SuperGroupId = UUID
 export type PostId = UUID
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/client-api/#user Client API#User - Gamma Docs}
+ * Describes a user of the client.
+ * @see {@link https://gamma-docs.olillin.com/api/client-api#user Client API#User - Gamma Docs}
  */
 export interface User {
     id: UserId
@@ -34,7 +35,8 @@ export interface User {
 }
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/client-api/#group Client API#Group - Gamma Docs}
+ * Describes a Gamma group.
+ * @see {@link https://gamma-docs.olillin.com/api/client-api#group Client API#Group - Gamma Docs}
  */
 export interface Group {
     id: GroupId
@@ -44,7 +46,8 @@ export interface Group {
 }
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/client-api/#super-group Client API#SuperGroup - Gamma Docs}
+ * Describes a Gamma super group.
+ * @see {@link https://gamma-docs.olillin.com/api/client-api#super-group Client API#Super Group - Gamma Docs}
  */
 export interface SuperGroup {
     id: SuperGroupId
@@ -56,7 +59,8 @@ export interface SuperGroup {
 }
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/client-api/#post Client API#Post - Gamma Docs}
+ * Describes a Gamma post in a group.
+ * @see {@link https://gamma-docs.olillin.com/api/client-api#post Client API#Post - Gamma Docs}
  */
 export interface Post extends Versioned {
     id: PostId
@@ -65,7 +69,8 @@ export interface Post extends Versioned {
 }
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/info-api/#group-with-post Info API#Group with Post - Gamma Docs}
+ * Describes a Gamma group and the post a member of it has.
+ * @see {@link https://gamma-docs.olillin.com/api/info-api#group-with-post Info API#Group with Post - Gamma Docs}
  */
 export interface PostInfo extends Post {
     emailPrefix: string
@@ -81,7 +86,8 @@ export interface VersionedGroup extends Group, Versioned {
 }
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/info-api/#super-group Info API#Super Group - Gamma Docs}
+ * Describes a Gamma super group.
+ * @see {@link https://gamma-docs.olillin.com/api/info-api#super-group Info API#Super Group - Gamma Docs}
  */
 export interface VersionedSuperGroup extends SuperGroup, Versioned {}
 
@@ -89,7 +95,8 @@ export interface VersionedSuperGroup extends SuperGroup, Versioned {}
 
 // #region Authentication
 /**
- * @see {@link https://gamma-docs.olillin.com/api/authorization/#scopes Authorization#Scopes - Gamma Docs}
+ * Scopes specify which information a client is allowed to access.
+ * @see {@link https://gamma-docs.olillin.com/api/authorization#scopes Authorization#Scopes - Gamma Docs}
  */
 export type Scope = 'openid' | 'profile' | 'email'
 
@@ -132,7 +139,8 @@ type IfScope<S extends Scope, R extends Scope, T> = R extends S
     : Record<string, never>
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/openid/#user-info OpenID API#User Info - Gamma Docs}
+ * Represents information about an authenticated user and the token used.
+ * @see {@link https://gamma-docs.olillin.com/api/openid#user-info OpenID API#User Info - Gamma Docs}
  */
 export type UserInfo<S extends Scope = Scope> = IfScope<
     'openid',
@@ -182,7 +190,8 @@ export type UserInfo<S extends Scope = Scope> = IfScope<
     >
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/info-api/#user-with-groups User with Groups - Gamma Docs}
+ * Describes a user and the groups they are in.
+ * @see {@link https://gamma-docs.olillin.com/api/info-api#user-with-groups Info API#User with Groups - Gamma Docs}
  */
 export interface UserWithGroups {
     user: User
@@ -193,14 +202,16 @@ export interface UserWithGroups {
 }
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/info-api/#group-with-post Group with Post - Gamma Docs}
+ * Describes a Gamma group and the post a member of it has.
+ * @see {@link https://gamma-docs.olillin.com/api/info-api#group-with-post Info API#Group with Post - Gamma Docs}
  */
 export interface GroupWithPost extends Group {
     post: Post
 }
 
 /**
- * @see {@link https://gamma-docs.olillin.com/api/client-api/#client-authorities Client API#Client Authorities - Gamma Docs}
+ * Client authorities are a way to designate certain super groups or users special "authorities" in the client without hardcoding ids or names. Client authorities are, for example, used by BookIT to give the "admin" authority to users who should be able to manage bookings and rules.
+ * @see {@link https://gamma-docs.olillin.com/api/client-api#client-authorities Client API#Client Authorities - Gamma Docs}
  */
 export type ClientAuthority = string
 // #endregion API responses

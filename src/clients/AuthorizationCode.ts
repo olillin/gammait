@@ -20,9 +20,9 @@ export interface AuthorizationCodeConfig<S extends Scope = Scope> {
 }
 
 /**
- * Client for the Authorization Code flow in Gamma.
+ * The OAuth 2.0 Authorization Code flow is used when accessing protected resources belonging to the user, such as when authenticating a user (verifying who they are) by fetching their user info.
  * @template S The scopes specified in the configuration. Defaults to all scopes.
- * @see {@link https://gamma-docs.olillin.com/api/authorization/#authorization-code-flow Authorization Code Flow - Gamma Docs}
+ * @see {@link https://gamma-docs.olillin.com/api/authorization#authorization-code-flow Authorization#Authorization Code Flow - Gamma Docs}
  */
 export class AuthorizationCode<S extends Scope = Scope> extends Client {
     config: AuthorizationCodeConfig<S>
@@ -126,9 +126,9 @@ export class AuthorizationCode<S extends Scope = Scope> extends Client {
     }
 
     /**
-     * Get info about the authorized user and the current access token.
+     * Get information about the authenticated user and the token used.
      * @returns The data available based on the configured scopes.
-     * @see {@link https://gamma-docs.olillin.com/api/openid/#get-oauth2userinfo GET /oauth2/userinfo - Gamma Docs}
+     * @see {@link https://gamma-docs.olillin.com/api/openid#get-oauth2userinfo OpenID API#GET /oauth2/userinfo - Gamma Docs}
      */
     userInfo(): Promise<UserInfo<S>> {
         return this.fetch<UserInfo<S>>(url.OAUTH2_USERINFO)
