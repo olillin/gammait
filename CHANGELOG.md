@@ -8,6 +8,25 @@ and this project adheres to
 
 ## [Unreleased]
 
+### Added
+
+- Documentation with links to Gamma Docs for all API methods and models.
+- Support for scopes UserInfo endpoint.
+- Workflow for GitHub releases.
+- Prettier plugins to sort imports and format package.json.
+
+### Changed
+
+- Project description in package.json and README.
+
+### Fixed
+
+- OAuth2 URL paths missing `/oauth2` prefix.
+
+### Security
+
+- Update vulnerable dependencies.
+
 ## [1.0.4] - 2026-06-20
 
 ### Added
