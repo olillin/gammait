@@ -19,13 +19,12 @@ export const GAMMA_ROOT = 'https://auth.chalmers.it' as const
 
 // #region OAuth2 endpoints
 export const OAUTH2_ROOT = `${GAMMA_ROOT}/oauth2` as const
-export const OAUTH2_AUTHORIZE_PATH = '/authorize' as const
-export const OAUTH2_AUTHORIZE =
-    `${OAUTH2_ROOT}${OAUTH2_AUTHORIZE_PATH}` as const
-export const OAUTH2_TOKEN_PATH = '/token' as const
-export const OAUTH2_TOKEN = `${OAUTH2_ROOT}${OAUTH2_TOKEN_PATH}` as const
-export const OAUTH2_USERINFO_PATH = `/userinfo` as const
-export const OAUTH2_USERINFO = `${OAUTH2_ROOT}${OAUTH2_USERINFO_PATH}` as const
+export const OAUTH2_AUTHORIZE_PATH = '/oauth2/authorize' as const
+export const OAUTH2_AUTHORIZE = `${GAMMA_ROOT}${OAUTH2_AUTHORIZE_PATH}` as const
+export const OAUTH2_TOKEN_PATH = '/oauth2/token' as const
+export const OAUTH2_TOKEN = `${GAMMA_ROOT}${OAUTH2_TOKEN_PATH}` as const
+export const OAUTH2_USERINFO_PATH = `/oauth2/userinfo` as const
+export const OAUTH2_USERINFO = `${GAMMA_ROOT}${OAUTH2_USERINFO_PATH}` as const
 // #endregion OAuth2 endpoints
 
 // #region Client API endpoints
