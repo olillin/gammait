@@ -1,6 +1,6 @@
 {
     "name": "gammait",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "description": "API Client for Gamma, the account system for the Software Engineering Student Division (IT)",
     "keywords": [
         "oauth2",

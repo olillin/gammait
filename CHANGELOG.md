@@ -8,10 +8,13 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-08-26
+
 ### Added
 
 - Allow List API client.
 - Account Scaffold API client.
+- Configurable root Gamma URL for `ApiClient`s with `gammaRoot` option.
 - Documentation with links to Gamma Docs for all API methods and models.
 - Support for scopes UserInfo endpoint.
 - Workflow for GitHub releases.
@@ -89,4 +92,5 @@ and this project adheres to
 [1.0.2]: https://github.com/olillin/gammait/compare/v1.0.1...v1.0.2
 [1.0.3]: https://github.com/olillin/gammait/compare/v1.0.2...v1.0.3
 [1.0.4]: https://github.com/olillin/gammait/compare/v1.0.3...v1.0.4
-[unreleased]: https://github.com/olillin/gammait/compare/v1.0.4...dev
+[1.1.0]: https://github.com/olillin/gammait/compare/v1.0.4...v1.1.0
+[unreleased]: https://github.com/olillin/gammait/compare/v1.1.0...dev
