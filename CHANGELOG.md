@@ -11,6 +11,7 @@ and this project adheres to
 ### Added
 
 - Allow List API client.
+- Account Scaffold API client.
 - Documentation with links to Gamma Docs for all API methods and models.
 - Support for scopes UserInfo endpoint.
 - Workflow for GitHub releases.

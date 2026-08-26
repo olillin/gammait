@@ -1,3 +1,4 @@
+export * from './AccountScaffoldApi'
 export * from './AllowListApi'
 export * from './AuthorizationCode'
 export * from './ClientApi'

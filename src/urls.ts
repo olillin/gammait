@@ -85,6 +85,15 @@ export function infoApiUser(id: UserId): InfoApiUserUrl {
 // #region Allow List API endpoints
 export const ALLOW_LIST_API_ROOT = `${GAMMA_ROOT}/api/allow-list/v1` as const
 // #endregion Allow List API endpoints
+//
+// #region Account Scaffold API endpoints
+export const ACCOUNT_SCAFFOLD_API_ROOT =
+    `${GAMMA_ROOT}/api/account-scaffold/v1` as const
+export const ACCOUNT_SCAFFOLD_USERS =
+    `${ACCOUNT_SCAFFOLD_API_ROOT}/users` as const
+export const ACCOUNT_SCAFFOLD_SUPER_GROUPS =
+    `${ACCOUNT_SCAFFOLD_API_ROOT}/supergroups` as const
+// #endregion Account Scaffold API endpoints
 
 // #region Images
 export const IMAGES = `${GAMMA_ROOT}/images` as const

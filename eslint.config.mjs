@@ -31,7 +31,10 @@ export default tseslint.config(
             'max-depth': ['error', { max: 3 }],
             '@typescript-eslint/no-deprecated': 'warn',
             'jsdoc/require-throws': 'error',
-            'jsdoc/require-description-complete-sentence': 'warn',
+            'jsdoc/require-description-complete-sentence': [
+                'warn',
+                { abbreviations: ['i.e.'] },
+            ],
             'jsdoc/sort-tags': 'warn',
             'jsdoc/require-example': 'off',
             'jsdoc/match-description': 'off',

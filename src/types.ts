@@ -94,6 +94,60 @@ export interface VersionedGroup extends Group, Versioned {
 }
 
 /**
+ * Describes a Gamma user.
+ * @see {@link https://gamma-docs.olillin.com/api/account-scaffold-api#user Account Scaffold API#User - Gamma Docs}
+ */
+export interface UserScaffold {
+    email: string
+    cid: string
+    nick: string
+    firstName: string
+    lastName: string
+}
+
+/**
+ * Describes a Gamma super group with subgroups and their members.
+ * @see {@link https://gamma-docs.olillin.com/api/account-scaffold-api#super-group Account Scaffold API#Super group - Gamma Docs}
+ */
+export interface SuperGroupScaffold {
+    name: string
+    prettyName: string
+    type: 'alumni' | 'committee' | 'functionaries' | 'society'
+    useManagedAccount: boolean
+    groups: GroupScaffold[]
+}
+
+/**
+ * Describes a Gamma group and its members.
+ * @see {@link https://gamma-docs.olillin.com/api/account-scaffold-api#group Account Scaffold API#Group - Gamma Docs}
+ */
+export interface GroupScaffold {
+    name: string
+    prettyName: string
+    members: UserPostScaffold[]
+}
+
+/**
+ * Describes a Gamma user and their post in a group.
+ * @see {@link https://gamma-docs.olillin.com/api/account-scaffold-api#user-post Account Scaffold API#User post - Gamma Docs}
+ */
+export interface UserPostScaffold {
+    user: UserScaffold
+    post: PostScaffold
+}
+
+/**
+ * Describes a Gamma post in a group.
+ * @see {@link https://gamma-docs.olillin.com/api/account-scaffold-api#post Account Scaffold API#Post - Gamma Docs}
+ */
+export interface PostScaffold {
+    postId: PostId
+    svText: string
+    enText: string
+    emailPrefix: string
+}
+
+/**
  * Describes a Gamma super group.
  * @see {@link https://gamma-docs.olillin.com/api/info-api#super-group Info API#Super Group - Gamma Docs}
  */
