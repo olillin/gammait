@@ -223,4 +223,24 @@ export interface GroupWithPost extends Group {
  * @see {@link https://gamma-docs.olillin.com/api/client-api#client-authorities Client API#Client Authorities - Gamma Docs}
  */
 export type ClientAuthority = string
+
+/**
+ * Describes a successful response from the API.
+ * @see {@link https://gamma-docs.olillin.com/api/allow-list-api#success-response Allow List API#Success Response - Gamma Docs}
+ */
+export interface AllowListSuccessResponse {
+    /** Class name of the response. */
+    name: string
+    /** HTTP status code. */
+    code: number
+}
+
+/**
+ * Describes a successful response from the API.
+ * @see {@link https://gamma-docs.olillin.com/api/allow-list-api#success-response Allow List API#Success Response - Gamma Docs}
+ */
+export interface AllowListAddedResponse extends AllowListSuccessResponse {
+    name: 'ALLOW_LIST_ADDED_RESPONSE'
+    code: 200
+}
 // #endregion API responses

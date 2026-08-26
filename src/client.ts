@@ -67,7 +67,8 @@ export class ApiClient extends Client {
 
     protected fetch<T extends object>(
         url: string,
-        method: string = 'GET'
+        method: string = 'GET',
+        body: null | undefined | BodyInit = null
     ): Promise<T> {
         return new Promise((resolve, reject) => {
             fetch(url, {
@@ -75,6 +76,7 @@ export class ApiClient extends Client {
                     Authorization: this.config.authorization,
                 },
                 method: method,
+                body: body,
             })
                 .then(async res => {
                     if (!res.ok) {

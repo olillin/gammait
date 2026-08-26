@@ -82,6 +82,10 @@ export function infoApiUser(id: UserId): InfoApiUserUrl {
 }
 // #endregion Info API endpoints
 
+// #region Allow List API endpoints
+export const ALLOW_LIST_API_ROOT = `${GAMMA_ROOT}/api/allow-list/v1` as const
+// #endregion Allow List API endpoints
+
 // #region Images
 export const IMAGES = `${GAMMA_ROOT}/images` as const
 export const IMAGES_USER_AVATAR = `${IMAGES}/user/avatar` as const
