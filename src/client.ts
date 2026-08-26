@@ -1,3 +1,5 @@
+import { GAMMA_ROOT } from './urls'
+
 /**
  * Represents a Gamma client implementing some authorization flow to simplify
  * using the Gamma API.
@@ -30,6 +32,11 @@ export interface ApiClientConfig {
      *
      */
     authorization: string
+
+    /**
+     * Base URL to the Gamma instance. Defaults to "https://auth.chalmers.it".
+     */
+    gammaRoot?: string
 }
 
 /**
@@ -52,6 +59,15 @@ export function getApiAuthorization(apiKey: string) {
 }
 
 /**
+ * Escape a string to be matched exactly in a regular expression.
+ * @param text The string to escape.
+ * @returns The string with special characters escaped with a backslash.
+ */
+export function regexEscape(text: string): string {
+    return text.replaceAll(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/**
  * Abstraction for clients that authorize with Gamma using an API key.
  */
 export class ApiClient extends Client {
@@ -59,8 +75,21 @@ export class ApiClient extends Client {
 
     constructor(config: ApiClientConfig) {
         super()
+
+        const gammaRoot =
+            config.gammaRoot === undefined
+                ? undefined
+                : new URL(config.gammaRoot).href.replace(/\/$/, '')
+
+        if (gammaRoot !== undefined && /[?&#]/.test(gammaRoot)) {
+            throw new Error(
+                'Gamma root URL may not contain search parameters or URL fragment'
+            )
+        }
+
         this.config = {
             ...config,
+            gammaRoot,
             authorization: getApiAuthorization(config.authorization),
         }
     }
@@ -68,8 +97,15 @@ export class ApiClient extends Client {
     protected fetch<T extends object>(
         url: string,
         method: string = 'GET',
-        body: null | undefined | BodyInit = null
+        body?: null | BodyInit
     ): Promise<T> {
+        if (this.config.gammaRoot !== undefined) {
+            url = url.replace(
+                new RegExp('^' + regexEscape(GAMMA_ROOT)),
+                this.config.gammaRoot
+            )
+        }
+
         return new Promise((resolve, reject) => {
             fetch(url, {
                 headers: {
