@@ -40,7 +40,8 @@
         "format": "prettier . --write --list-different",
         "generate:jsdoc": "tsx scripts/generate-jsdoc.ts",
         "lint": "eslint",
-        "test": "vitest"
+        "test": "vitest --config ./tests/vitest.config.ts",
+        "test:e2e": "docker compose -f ./tests/e2e/compose.yaml up --wait && vitest --config ./tests/e2e/vitest.config.ts; docker compose -f ./tests/e2e/compose.yaml down"
     },
     "dependencies": {
         "simple-oauth2": "^5.1.0"
@@ -53,6 +54,7 @@
         "@types/simple-oauth2": "^5.0.7",
         "eslint": "^9.39.1",
         "eslint-plugin-jsdoc": "^61.1.12",
+        "jest-extended": "git+https://github.com/jest-community/jest-extended.git",
         "prettier": "^3.6.2",
         "prettier-plugin-packagejson": "^3.0.2",
         "rimraf": "^6.0.1",
@@ -60,7 +62,7 @@
         "tsx": "^4.23.12",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.46.4",
-        "vitest": "^4.0.8"
+        "vitest": "^5.1.1"
     },
     "allowScripts": {
         "esbuild@0.28.2": true
