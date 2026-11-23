@@ -1,0 +1,144 @@
+{
+    "users": [
+        {
+            "id": "88eec5c2-5ebb-4e13-9a76-fcc4dac9e74f",
+            "firstName": "Michael",
+            "lastName": "Scott",
+            "cid": "mscott",
+            "nick": "Boss",
+            "acceptanceYear": 2005,
+            "admin": true
+        },
+        {
+            "id": "bc605869-9a4d-46ec-8a29-d00819d4c195",
+            "firstName": "Jim",
+            "lastName": "Halpert",
+            "cid": "jhalpert",
+            "nick": "Big Tuna",
+            "acceptanceYear": 2002
+        }
+    ],
+    "groups": [
+        {
+            "id": "047ac437-a789-4cc5-bb6e-ba50efd7c509",
+            "name": "digit",
+            "prettyName": "digIT",
+            "superGroupId": "364a359a-f9eb-4d81-bb99-25cc5adf176d",
+            "members": [
+                {
+                    "userId": "bc605869-9a4d-46ec-8a29-d00819d4c195",
+                    "postId": "7bb1db15-730d-4864-bfc3-99abe7c0ccf8",
+                    "unofficialPostName": "root"
+                }
+            ]
+        },
+        {
+            "id": "2abe2264-fd61-4899-ba46-851279d85229",
+            "name": "digit",
+            "prettyName": "digIT",
+            "superGroupId": "aed27030-ad90-4526-855c-1e909b1dcecb",
+            "members": [
+                {
+                    "userId": "88eec5c2-5ebb-4e13-9a76-fcc4dac9e74f",
+                    "postId": "7bb1db15-730d-4864-bfc3-99abe7c0ccf8",
+                    "unofficialPostName": "root"
+                },
+                {
+                    "userId": "bc605869-9a4d-46ec-8a29-d00819d4c195",
+                    "postId": "08efcf3a-1805-4b5f-a60e-da6ce0d33f58"
+                }
+            ]
+        },
+        {
+            "id": "834651d1-34c1-4bac-b148-6546368a8454",
+            "name": "styrit",
+            "prettyName": "styrIT",
+            "superGroupId": "2157ee72-04cd-4029-8d57-77142d3ef5fa",
+            "members": [
+                {
+                    "userId": "bc605869-9a4d-46ec-8a29-d00819d4c195",
+                    "postId": "7bb1db15-730d-4864-bfc3-99abe7c0ccf8"
+                },
+                {
+                    "userId": "88eec5c2-5ebb-4e13-9a76-fcc4dac9e74f",
+                    "postId": "08efcf3a-1805-4b5f-a60e-da6ce0d33f58",
+                    "unofficialPostName": "PR"
+                }
+            ]
+        }
+    ],
+    "superGroups": [
+        {
+            "id": "aed27030-ad90-4526-855c-1e909b1dcecb",
+            "name": "digit",
+            "prettyName": "digIT",
+            "type": "COMMITTEE"
+        },
+        {
+            "id": "2157ee72-04cd-4029-8d57-77142d3ef5fa",
+            "name": "styrit",
+            "prettyName": "styrIT",
+            "type": "BOARD"
+        },
+        {
+            "id": "364a359a-f9eb-4d81-bb99-25cc5adf176d",
+            "name": "didit",
+            "prettyName": "didIT",
+            "type": "ALUMNI"
+        }
+    ],
+    "posts": [
+        {
+            "id": "7bb1db15-730d-4864-bfc3-99abe7c0ccf8",
+            "postName": {
+                "sv": "Ordförande",
+                "en": "Chairman"
+            }
+        },
+        {
+            "id": "08efcf3a-1805-4b5f-a60e-da6ce0d33f58",
+            "postName": {
+                "sv": "Ledamot",
+                "en": "Member"
+            }
+        }
+    ],
+    "clients": [
+        {
+            "id": "8e54391c-ec36-4054-a1a9-0a6f5c2aa948",
+            "clientId": "MYAPPCLIENT0000000000000000001",
+            "clientSecret": "my-app-secret",
+            "redirectUrl": "http://localhost:3000/callback",
+            "prettyName": "My app",
+            "description": { "sv": "Min app", "en": "My app" },
+            "emailScope": false,
+            "ownerId": "bc605869-9a4d-46ec-8a29-d00819d4c195",
+            "apiKey": {
+                "id": "ea917118-ce7c-47f2-b024-37e131c33e86",
+                "token": "my-app-api-key"
+            },
+            "authorities": []
+        },
+        {
+            "id": "7ec26ef5-7421-4963-8cad-787c8657b2e9",
+            "clientId": "OFFICIALCLIENT0000000000000002",
+            "clientSecret": "official-app-secret",
+            "redirectUrl": "http://localhost:3000/callback",
+            "prettyName": "Official app",
+            "description": { "sv": "Officell app", "en": "Official app" },
+            "emailScope": true,
+            "apiKey": {
+                "id": "a4735728-d0ff-4a99-bc99-327ea07d4e4e",
+                "token": "official-app-api-key"
+            },
+            "authorities": [
+                {
+                    "name": "admin",
+                    "superGroupIds": [],
+                    "superGroupPosts": [],
+                    "userIds": ["88eec5c2-5ebb-4e13-9a76-fcc4dac9e74f"]
+                }
+            ]
+        }
+    ]
+}

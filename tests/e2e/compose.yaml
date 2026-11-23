@@ -1,0 +1,38 @@
+name: gammait-e2e
+
+services:
+    gamma:
+        image: gamma-app:test
+        environment:
+            PRODUCTION: false
+            ADMIN_SETUP: true
+            IS_MOCKING: true
+            MOCK_DATA_RESOURCE: 'file:/tmp/mock.json'
+            BASE_URL: http://localhost:9090
+            SERVER_PORT: 9090
+            THC_PORT: 9090 # Tiny health checker port. Should match SERVER_PORT
+            ROOT_DEBUG_LEVEL: INFO
+            DB_HOST: gamma-db
+            DB_NAME: gamma-dev
+            DB_PASSWORD: password
+            DB_USER: postgres
+            REDIS_HOST: gamma-redis
+        ports:
+            - 9090:9090
+        volumes:
+            - './mock.json:/tmp/mock.json:ro'
+        healthcheck:
+            test: ['CMD', '/workspace/health-check']
+            interval: 2s
+            timeout: 2m
+            retries: 60
+
+    gamma-redis:
+        image: redis:8
+
+    gamma-db:
+        image: postgres:18
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_DB: gamma-dev
+            POSTGRES_PASSWORD: password
